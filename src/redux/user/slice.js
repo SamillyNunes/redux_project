@@ -31,10 +31,35 @@ export const userSlice = createSlice({
                 ...state,
                 user:null,
             }
+        },
+        addAddress: (state, action) => {
+            if(action.payload.location==='' || action.payload.number===''){
+                alert("Preencha todos os campos!");
+                return {...state};
+            }
+
+            if(state.user===null){
+                
+                alert("Faça o login para cadastrar o endereço!");
+                return {...state};
+            }
+
+            alert('Dados atualizados!');
+
+            return {
+                ...state,
+                user:{
+                    ...state.user,
+                    address: {
+                        location: action.payload.location,
+                        number: action.payload.number,
+                    }
+                }
+            };
         }
     }
 });
 
-export const { createUser, logoutUser } = userSlice.actions;
+export const { createUser, logoutUser, addAddress } = userSlice.actions;
 
 export default userSlice.reducer;
