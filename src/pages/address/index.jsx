@@ -4,7 +4,7 @@ import { Header } from '../../components/header'
 import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addAddress } from '../../redux/user/slice';
+import { addAddress, deleteAddress } from '../../redux/user/slice';
 
 export function Address() {
   const dispatch = useDispatch();
@@ -22,6 +22,13 @@ export function Address() {
     }));
   }
 
+  function handleDeleteAddress(){
+    dispatch(deleteAddress());
+    setAddressName('');
+    setAddressNumber('');
+    alert("Deletado com sucesso!");
+  }
+
   return (
     <>
     <Header/>
@@ -32,6 +39,10 @@ export function Address() {
             <Link to="/painel">
               Voltar para o painel
             </Link>
+
+            { user?.address && (
+              <button onClick={handleDeleteAddress} className={styles.buttonDelete} >Deletar endereço</button>
+            ) }
           </div>
 
           <section className={styles.address}>
