@@ -79,10 +79,22 @@ export const userSlice = createSlice({
             console.log('Falhou');
             console.log(action.payload);
             state.loading = false;
+        },
+        fetchUserById: (state) => {
+            console.log('Chamou no slice!');
+        },
+        onFetchByIdSuccess: (state, action)=>{
+            console.log('user no id');
+            console.log(action.payload);
+        },
+        onFetchByIdFailed: (state, action)=>{
+            console.log('erro no id');
+            console.log(action.payload);
         }
     }
 });
 
-export const { createUser, logoutUser, addAddress, deleteAddress, fetchUsers, onFetchUsersSuccess, onFetchUsersFailed } = userSlice.actions;
+export const { createUser, logoutUser, addAddress, deleteAddress, fetchUsers, onFetchUsersSuccess, onFetchUsersFailed,
+    fetchUserById, onFetchByIdSuccess, onFetchByIdFailed } = userSlice.actions;
 
 export default userSlice.reducer;
